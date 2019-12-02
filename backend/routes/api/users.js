@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const wrap = require('async-wrap');
+const auth = require('../../middleware/auth');
 
 const User = require('../../schemes/user.model');
 
@@ -67,9 +68,8 @@ router.get('/:id', function (req, res) {
     });
 });
 
-router.post('/update/:id', function (req, res) {
+router.post('/update/:id', auth, function (req, res) {
     try { req.body = JSON.parse(Object.keys(req.body)[0]) } catch (err) { req.body = req.body }
-    console.log(req.body);
     User.findById(req.params.id, function (err, user) {
         if (!user) {
             res.status(404).send("data is not found");
@@ -118,7 +118,10 @@ router.post('/login', (req, res, next) => {
                 if (err) {
                     next(err);
                 }
-                res.cookie('Authorization', `Bearer ${token}`);
+                //res.set('Set-Cookie', cookie.serialize('todofyAuth', token, { path, maxAge: '1h', httpOnly: true }))
+                //res.setHeader('Authorization', `Bearer ${token}`)
+                //res.set('Set-Cookie', token)
+                res.cookie('todofy.sid', token, { path: '/', expires: new Date(Date.now() + 2 * 60 * 1000), httpOnly: true });
                 res.end();
             })
         }).catch((err) => {

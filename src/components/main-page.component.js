@@ -7,7 +7,7 @@ export default class CreateTodo extends Component {
         return (
             <div>
                 <div style={{ marginTop: '10%' }}>
-                    <h2 align="center">Want to make some taks huh?</h2>
+                    <h2 align="center">Want to make some tasks huh?</h2>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15%' }}>
                     <Link to="/register">

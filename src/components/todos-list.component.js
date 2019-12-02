@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import TodoModalComponent from './todoModal.component';
 import axios from 'axios';
 
 const Todo = props => (
@@ -39,12 +39,7 @@ export default class TodosList extends Component {
     render() {
         return (
             <div>
-                <div style={{ display: 'inline-block' }}>
-                    <h3 style={{ float: 'left' }}>Todos List</h3>
-                    <Link to="/create">
-                        <Button color="secondary" style={{ float: 'right', marginLeft: '20px' }}>Create Todo</Button>
-                    </Link>
-                </div>
+                <TodoModalComponent/>  
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>

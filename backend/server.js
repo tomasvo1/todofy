@@ -4,14 +4,14 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || 4000;
-
-let Todo = require('./schemes/todo.model');
+const cookieParser = require('cookie-parser')
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); 
+app.use(cookieParser());
 
 mongoose.connect('mongodb://127.0.0.1:27017/todos', { useNewUrlParser: true });
 const connection = mongoose.connection;

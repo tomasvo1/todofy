@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import BoardModalComponent from './boardModal.component';
 import axios from 'axios';
 
 const Board = props => (
@@ -39,12 +39,7 @@ export default class BoardList extends Component {
     render() {
         return (
             <div>
-                <div style={{display:'inline-block'}}>
-                    <h3 style={{float:'left'}}>Boards List</h3>
-                    <Link to="/create-board">
-                        <Button color="secondary" style={{float:'right', marginLeft: '20px'}}>Create Board</Button>
-                    </Link>
-                </div>
+                <BoardModalComponent/>  
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
